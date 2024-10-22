@@ -7,29 +7,32 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Id;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 
 @Entity
 @Table(name="CONTACT")
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int cId;
-	private String name;
-	private String secondName;
-	private String work;
-	private String email;
-	private String phone;
-	private String image;
+	int cId;
+	String name;
+	String secondName;
+	String work;
+	String email;
+	String phone;
+	String image;
 	@Column(length = 1000)
-	private String description;
+	String description;
 	@ManyToOne
-	private User user;
+	User user;
 	
-	public Contact() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 }

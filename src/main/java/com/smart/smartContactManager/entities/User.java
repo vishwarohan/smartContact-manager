@@ -12,36 +12,34 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 
 @Entity
 @Table(name="USER")
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	private String name;
+	int id;
+	String name;
 	@Column(unique = true)
-	private String email;
-	
-	private String password;
-	private String role;
-	private String enable;
-	private String imageurl;
+	String email;
+
+	String password;
+	String role;
+	String enable;
+	String imageurl;
 	@Column(length = 500)
-	private String about;
-	@OneToMany(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
-	private List<Contact> contacts =new ArrayList<>();
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
-				+ ", enable=" + enable + ", imageurl=" + imageurl + ", about=" + about + ", contacts=" + contacts + "]";
-	}
+	String about;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	List<Contact> contacts = new ArrayList<>();
 
 }
